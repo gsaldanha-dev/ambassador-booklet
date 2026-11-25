@@ -224,3 +224,57 @@ export const BEE = [
   { n: '2', h: 'Round 2', p: 'Wednesday 25 November, one room per grade, with the words on a TV. 21 finalists.' },
   { n: '3', h: 'The Grand Final', p: 'Wednesday 2 December. Grade 6 against Grade 7, Grade 8 against Grade 9, and Grades 10, 11 and 12 together.' },
 ];
+
+// Year by year (25/11). School facts come only from the school's "About the School" deck and the timetable Gustavo
+// confirmed. The IB parts are the IB's own framework (the same in every IB school); nothing here is invented about St. Nicholas.
+export const YEAR = {
+  6: {
+    prog: 'MYP Year 1', age: '11 to 12',
+    ib: [
+      { h: 'Six global contexts', p: 'Every MYP unit is set in one of six contexts: identities and relationships; orientation in space and time; personal and cultural expression; scientific and technical innovation; globalization and sustainability; fairness and development.' },
+      { h: 'Approaches to learning', p: 'Five groups of skills you practise in every subject: thinking, communication, social, self-management and research. Teachers name them in each unit.' },
+      { h: 'The learner profile', p: 'Ten traits the IB hopes you grow into: inquirer, knowledgeable, thinker, communicator, principled, open-minded, caring, risk-taker, balanced and reflective.' },
+    ],
+  },
+  7: {
+    prog: 'MYP Year 2', age: '12 to 13',
+    ib: [
+      { h: 'Four criteria per subject', p: 'Each subject has four criteria (A, B, C and D), each marked from 0 to 8. Your teacher tells you which criteria a task is assessing before you start.' },
+      { h: 'Statement of inquiry', p: 'Each unit starts from one sentence that links a big idea to a global context. Reading it tells you what the unit is really about.' },
+      { h: 'Service as action', p: 'The MYP asks you to take action in your community: helping, campaigning or volunteering, and then reflecting on what you learned.' },
+    ],
+  },
+  8: {
+    prog: 'MYP Year 3', age: '13 to 14',
+    ib: [
+      { h: 'Interdisciplinary units', p: 'The MYP brings two subjects together in at least one unit every year, so you use both to understand one problem.' },
+      { h: 'Design cycle', p: 'In Design you go through four stages: inquiring and analysing, developing ideas, creating the solution, and evaluating.' },
+      { h: 'Reflection counts', p: 'Many criteria ask you to reflect: what worked, what did not, and what you would change. It is marked, not just a nice extra.' },
+    ],
+  },
+  9: {
+    prog: 'MYP Year 4', age: '14 to 15',
+    ib: [
+      { h: 'The Personal Project is next', p: 'In MYP Year 5 every student completes a Personal Project. Year 4 is the time to notice what you really care about.' },
+      { h: 'Higher expectations', p: 'The criteria stay the same, but the level of work expected for each band grows every year.' },
+      { h: 'Managing your own deadlines', p: 'Self-management is one of the five skill groups the MYP asks you to build, and it shows most this year.' },
+    ],
+  },
+  10: {
+    prog: 'MYP Year 5', age: '15 to 16',
+    ib: [
+      { h: 'The Personal Project', p: 'A project of your own choice, over several months: you set a goal, create a product or outcome, keep a process journal and write a report.' },
+      { h: 'How it is assessed', p: 'The IB assesses it on three criteria: planning, applying skills and reflecting.' },
+      { h: 'Looking ahead to the DP', p: 'This is the year you choose your Diploma Programme subjects, three at Higher Level and three at Standard Level.' },
+    ],
+  },
+  11: {
+    prog: 'DP Year 1', age: '16 to 17',
+    ib: [
+      { h: 'Six subjects, two levels', p: 'One subject from each of six groups. Higher Level subjects have about 240 teaching hours and Standard Level about 150.' },
+      { h: 'Theory of Knowledge', p: 'TOK asks how we know what we claim to know. It is assessed by an exhibition and a 1,600-word essay.' },
+      { h: 'CAS and the Extended Essay', p: 'CAS (creativity, activity, service) runs for about 18 months. The Extended Essay is your own research paper of up to 4,000 words.' },
+    ],
+  },
+};
+export const YEARGROUP = { size: '50 to 60 students in each year', classes: '10 to 15 in most classes, mixed by subject', day: '08:00 to 15:40, seven periods' };

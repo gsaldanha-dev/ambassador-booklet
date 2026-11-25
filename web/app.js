@@ -1,7 +1,7 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js?v=1795625668';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795625668';
-import { answer, SUGGESTIONS } from './guide.js?v=1795625668';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE, YEAR, YEARGROUP } from './content.js?v=1795640488';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795640488';
+import { answer, SUGGESTIONS } from './guide.js?v=1795640488';
 
 const $app = document.getElementById('app');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -156,17 +156,36 @@ function grade(n) {
       <nav class="gswitch" aria-label="Other grades">${Object.keys(GRADES).map((k) => `<a href="#/grade/${k}" class="${k === String(n) ? 'on' : ''}">${k}</a>`).join('')}</nav>
     </div>
   </header>
+  ${YEAR[n] ? `<section class="band">
+    <div class="glance">
+      <div><small>Programme</small><b>${esc(YEAR[n].prog)}</b></div>
+      <div><small>Usual age</small><b>${esc(YEAR[n].age)}</b></div>
+      <div><small>Your year</small><b>${esc(YEARGROUP.size)}</b></div>
+      <div><small>Classes</small><b>${esc(YEARGROUP.classes)}</b></div>
+      <div><small>Every day</small><b>${esc(YEARGROUP.day)}</b></div>
+    </div>
+  </section>` : ''}
   <section class="band">
     <h2>What matters this year.</h2>
     <div class="topics">${G.cards.map((c) => `<article class="topic ${c.todo ? 'is-todo' : ''}"><h3>${esc(c.h)}</h3><p>${esc(c.p)}</p>${c.todo ? todo : ''}</article>`).join('')}</div>
   </section>
+  ${YEAR[n] ? `<section class="band tint">
+    <h2>What the IB asks of you in ${esc(YEAR[n].prog)}.</h2>
+    <div class="ibyear">${YEAR[n].ib.map((x, i) => `<article><span>${i + 1}</span><h3>${esc(x.h)}</h3><p>${esc(x.p)}</p></article>`).join('')}</div>
+    <p class="small">This part is the IB’s own framework, the same in every IB school.</p>
+  </section>` : ''}
+  ${(() => { const here = AMBASSADORS.filter(([, g]) => String(g) === String(n)); return `<section class="band">
+    <h2>${here.length ? `Ambassadors in Grade ${n}.` : `Ambassadors near you.`}</h2>
+    <p class="lead-s">${here.length ? 'They are in your year and remember being new.' : `No Ambassador is in Grade ${n} yet, so your questions go to the nearest grades.`}</p>
+    <ul class="faces small">${(here.length ? here : AMBASSADORS.slice().sort((a, b) => Math.abs(a[1] - n) - Math.abs(b[1] - n)).slice(0, 3)).map(([nm, g]) => `<li><span>${esc(nm[0])}</span><b>${esc(nm)}</b><small>Grade ${g}</small></li>`).join('')}</ul>
+  </section>`; })()}
   <section class="band">
     <h2>${prog === 'myp' ? 'Your programme: the MYP.' : 'Your programme: the DP.'}</h2>
     <div class="facts-list">${(prog === 'myp' ? MYP : DP).map((x) => `<div><b>${esc(x.h)}</b><p>${esc(x.p)}</p></div>`).join('')}</div>
     <a class="more-link" href="#/ib">The IB, simply</a>
   </section>
   <section class="band">
-    <div class="askbox"><div><h2>A question about Grade ${n}?</h2><p>An Ambassador from Grade ${n} will answer.</p></div><a class="pill" href="#/ask">Ask an Ambassador</a></div>
+    <div class="askbox"><div><h2>A question about Grade ${n}?</h2><p>${AMBASSADORS.some(([, g]) => String(g) === String(n)) ? `An Ambassador from Grade ${n} will answer.` : 'An Ambassador will answer.'}</p></div><a class="pill" href="#/ask">Ask an Ambassador</a></div>
     <p class="credit">Grade ${n} chapter by ${esc(G.team)}.</p>
   </section>`;
 }

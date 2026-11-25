@@ -1,7 +1,7 @@
 // "Ask the guide": a chatbot that only answers from this site's own content.
 // No AI service: it matches the question against the answers below and the glossary,
 // so it can never invent a fact. When it is not sure, it sends the question to an Ambassador.
-import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795625668';
+import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795640488';
 
 const fold = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ');
 // Portuguese and informal words mapped to the words the answers use.
@@ -24,6 +24,15 @@ const words = (s) => fold(s).split(/\s+/).filter(Boolean).map((w) => SYN[w] || w
 const WEAK = new Set(['time', 'day', 'school', 'grade', 'what', 'mean', 'meaning', 'define', 'year', 'when', 'who', 'how', 'start', 'end']);
 const T = (k, a, link, label) => ({ k: k.split(' '), a, link, label });
 const FAQ = [
+  T('personal project pp grade 10 myp5', 'Every student does a Personal Project in MYP Year 5 (Grade 10): a project of your choice with a product, a process journal and a report, assessed on planning, applying skills and reflecting.', '#/grade/10', 'Grade 10'),
+  T('global contexts myp unit', 'Every MYP unit is set in one of six global contexts: identities and relationships; orientation in space and time; personal and cultural expression; scientific and technical innovation; globalization and sustainability; fairness and development.', '#/grade/6', 'Grade 6'),
+  T('atl approaches learning skills', 'Approaches to learning are five groups of skills: thinking, communication, social, self-management and research.', '#/grade/6', 'Grade 6'),
+  T('learner profile traits', 'The IB learner profile has ten traits: inquirer, knowledgeable, thinker, communicator, principled, open-minded, caring, risk-taker, balanced and reflective.', '#/grade/6', 'Grade 6'),
+  T('service action volunteer myp', 'Service as action is part of the MYP: you take action in your community and reflect on what you learned.', '#/grade/7', 'Grade 7'),
+  T('tok theory knowledge essay', 'Theory of Knowledge asks how we know what we claim to know. It is assessed by an exhibition and a 1,600-word essay.', '#/grade/11', 'Grade 11'),
+  T('extended essay ee words', 'The Extended Essay is your own research paper of up to 4,000 words, part of the DP core.', '#/grade/11', 'Grade 11'),
+  T('hl sl higher standard level hours', 'In the DP you take three subjects at Higher Level (about 240 teaching hours) and three at Standard Level (about 150).', '#/grade/11', 'Grade 11'),
+  T('age old grade how', 'Grade 6 is usually 11 to 12 years old, Grade 7 12 to 13, and so on up to Grade 12.', '#/grades', 'Grades'),
   T('time start school day 8 morning', 'Secondary starts at 08:00 every day.', '#/day', 'A day here'),
   T('time end finish school day afternoon home', 'Secondary finishes at 15:40.', '#/day', 'A day here'),
   T('lunch eat snack time when', 'Lunch is from 13:00 to 14:00, after Period 5.', '#/day', 'A day here'),
