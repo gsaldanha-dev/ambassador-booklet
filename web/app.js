@@ -1,6 +1,6 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
 import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP } from './content.js';
-import { trail, GRADE_ART, MINI } from './art.js';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js';
 import { answer, SUGGESTIONS } from './guide.js';
 
 const $app = document.getElementById('app');
@@ -11,104 +11,133 @@ const store = {
 };
 const S = { lang: store.get('lang', 'en'), q: '', quiz: [], grade: store.get('grade', null), sent: null, mark: 6, chat: store.get('chat', []) };
 const todo = '<span class="todo">The grade team is writing this</span>';
-
-// progress along the trail = which stops the student has visited
-function visited(stop) { const v = new Set(store.get('visited', [])); v.add(stop); store.set('visited', [...v]); }
-const trailDone = () => store.get('visited', []);
+const visited = () => {};
 
 function daysTo(iso) { return Math.ceil((new Date(iso) - Date.now()) / 864e5); }
-function countLine() {
-  const o = daysTo(SITE.orientation), f = daysTo(SITE.firstDay);
-  if (o > 0) return `Orientation Morning is in <b>${o} days</b>. Your first lessons start ${f} days from now.`;
-  if (f > 0) return `Your first day is in <b>${f} days</b>.`;
-  return 'Welcome to Secondary. We are glad you are here.';
-}
 
-// ---------- pages ----------
+// ---------- home: one long page that moves as you scroll ----------
 function home() {
+  const o = daysTo(SITE.orientation);
   return `
-  <section class="hero">
-    <div class="hero-text">
-      <p class="hello">Hello, new Grade 6–11 student.</p>
-      <h1>Your first weeks at St.&nbsp;Nicholas, figured out by the students who were new before you.</h1>
-      <p class="count">${countLine()}</p>
-      <div class="hero-cta"><a class="btn y" href="#/grades">Find your grade</a><button class="btn ghost" data-act="chat">Ask the guide a question</button></div>
+  <section class="h-hero" data-scene="hero">
+    <div class="h-glow"></div>
+    <div class="h-inner">
+      <p class="h-pre">St. Nicholas School · Secondary</p>
+      <h1 class="h-title">Start here.</h1>
+      <p class="h-sub">The guide to your first weeks, written by the students who were new before you.</p>
+      <div class="h-cta"><a class="pill" href="#/grades">Find your grade</a><button class="pill line" data-act="chat">Ask the guide</button></div>
+      ${o > 0 ? `<p class="h-count"><b data-count="${o}">${o}</b> days to Orientation Morning</p>` : ''}
     </div>
-    <div class="hero-map">${trail(trailDone())}<p class="map-note">Tap a stop. It turns green once you have been there.</p></div>
+    <div class="h-scroll" aria-hidden="true"><i></i></div>
   </section>
 
-  <section class="band">
-    <div class="sec-head"><h2>Six chapters, one for each grade</h2><p>Pick yours. Each one is written by Ambassadors from that grade.</p></div>
-    <div class="tickets">${Object.keys(GRADES).map((n) => ticket(n)).join('')}</div>
-  </section>
-
-  <section class="band split">
-    <div>
-      <h2>St. Nicholas in four numbers</h2>
-      <dl class="nums">${FACTS.map((f) => `<div><dt>${esc(f.n)}</dt><dd>${esc(f.t)}</dd></div>`).join('')}</dl>
-    </div>
-    <div class="aside-card">
-      <h3>A normal day</h3>
-      <div class="clockline"><span>08:00</span><i></i><span>15:40</span></div>
-      <p>Everyone in Secondary starts and finishes at the same time. Classes change by subject, so you move rooms and meet different people all day.</p>
-      <a class="link" href="#/day">See the whole day</a>
+  <section class="swap" data-scene="swap">
+    <div class="swap-stick">
+      <p class="swap-lines">
+        <span>New school.</span><span>New people.</span><span>New words.</span><span>New timetable.</span><span class="last">Same you.</span>
+      </p>
     </div>
   </section>
 
-  <section class="band">
-    <div class="sec-head"><h2>Things people worry about</h2><p>Tap a card to see what is actually true.</p></div>
-    <div class="notes">${MYTHS.map((m, i) => `<button class="note" data-flip style="--r:${[-1.6, 1.2, -0.8, 1.8][i % 4]}deg"><span class="nq">${esc(m.q)}</span><span class="na"><b>${esc(m.a)}</b> ${esc(m.p)}</span></button>`).join('')}</div>
+  <section class="stats light">
+    <h2 class="big">A small school with<br>a big world inside.</h2>
+    <div class="stat-row">${FACTS.map((f) => `<div class="stat reveal"><b class="grad-txt">${esc(f.n)}</b><span>${esc(f.t)}</span></div>`).join('')}</div>
   </section>
 
-  <section class="band">
-    <div class="sec-head"><h2>Everything in this guide</h2></div>
-    <div class="index">
-      ${idx('#/day', MINI.day, 'A day here', 'From 08:00 to 15:40, step by step.')}
-      ${idx('#/ib', MINI.ib, 'The IB, simply', 'MYP and DP: subjects, marks and the core.')}
-      ${idx('#/glossary', MINI.words, 'The words everyone uses', '21 words in English and Portuguese.')}
-      ${idx('#/help', MINI.help, 'Who to ask', 'The right person for each kind of problem.')}
-      ${idx('#/calendar', MINI.cal, 'Key dates', 'Orientation, first day, holidays.')}
-      ${idx('#/events', MINI.year, 'The year', 'Spelling Bee, International Day, MUNicks, Made in Brazil.')}
+  <section class="chapters">
+    <div class="ch-head"><h2 class="big">Six chapters.<br><span class="dim">One is yours.</span></h2><div class="ch-nav"><button data-scroll="-1" aria-label="Previous">‹</button><button data-scroll="1" aria-label="Next">›</button></div></div>
+    <div class="rail" id="rail">${Object.keys(GRADES).map((n) => chapterCard(n)).join('')}</div>
+  </section>
+
+  <section class="day-scene" data-scene="day">
+    <div class="day-stick">
+      <p class="day-k">A day in Secondary</p>
+      <div class="day-clock"><b id="dayTime">08:00</b></div>
+      <div class="day-bar"><i id="dayFill"></i></div>
+      <ol class="day-steps">${DAY.map((d, i) => `<li data-i="${i}"><b>${esc(d.h)}</b><span>${esc(d.p)}</span></li>`).join('')}</ol>
     </div>
   </section>
 
-  <section class="band">
-    <div class="sec-head"><h2>The people who wrote this</h2><p>Secondary Ambassadors. Look for us at break on Wednesdays.</p></div>
-    <ul class="people">${AMBASSADORS.map(([n, g]) => `<li><span class="av">${esc(n[0])}</span><b>${esc(n)}</b><small>Grade ${g}</small></li>`).join('')}<li class="more">More of us, with photos, soon</li></ul>
+  <section class="bento light">
+    <h2 class="big">The IB, without the jargon.</h2>
+    <div class="bento-grid">
+      <a class="tile t-myp reveal" href="#/ib"><span class="t-k">Grades 6–10</span><h3>MYP</h3><p>Eight subject groups. Every criterion marked from 0 to 8.</p><span class="t-big grad-txt">8</span></a>
+      <a class="tile t-dp reveal" href="#/ib"><span class="t-k">Grades 11–12</span><h3>DP</h3><p>Six subjects, plus TOK, the Extended Essay and CAS.</p><span class="t-big">45</span></a>
+      <a class="tile t-words reveal" href="#/glossary"><span class="ico">${ICON.book}</span><h3>The words everyone uses</h3><p>Search 21 words in English and Portuguese.</p></a>
+      <a class="tile t-help reveal" href="#/help"><span class="ico">${ICON.person}</span><h3>Who to ask</h3><p>Start with your tutor. We are here too.</p></a>
+      <a class="tile t-week reveal" href="#/checklist"><span class="ico">${ICON.check}</span><h3>Week one</h3><p>Eight small goals to tick off.</p></a>
+      <a class="tile t-quiz reveal" href="#/quiz"><span class="ico">${ICON.spark}</span><h3>Which club is for you?</h3><p>Five questions.</p></a>
+    </div>
+  </section>
+
+  <section class="myths-scene">
+    <h2 class="big">Things people worry about.<br><span class="dim">Tap to see what is true.</span></h2>
+    <div class="myth-grid">${MYTHS.map((m) => `<button class="mcard reveal" data-flip><span class="mq">${esc(m.q)}</span><span class="ma"><b>${esc(m.a)}</b>${esc(m.p)}</span></button>`).join('')}</div>
+  </section>
+
+  <section class="guide-scene">
+    <div class="g-copy">
+      <h2 class="big">Ask anything.<br><span class="grad-txt">Get a real answer.</span></h2>
+      <p>The guide answers in English or Portuguese, only from what is written here. If it does not know, it does not guess: your question goes to an Ambassador from your grade.</p>
+      <button class="pill" data-act="chat">Ask the guide</button>
+    </div>
+    <div class="phone reveal" aria-hidden="true">
+      <div class="p-msg me">que horas começa a aula?</div>
+      <div class="p-msg">Secondary starts at 08:00 every day.</div>
+      <div class="p-msg me">what is CAS?</div>
+      <div class="p-msg">Creativity, Activity, Service: part of the DP, outside the classroom.</div>
+      <div class="p-msg me">where is the library?</div>
+      <div class="p-msg">That is not in the guide yet, so I will not guess. I can send it to an Ambassador.</div>
+    </div>
+  </section>
+
+  <section class="people-scene light">
+    <h2 class="big">Written by us.</h2>
+    <p class="lead-d">Secondary Ambassadors. Find us at break on Wednesdays.</p>
+    <ul class="faces">${AMBASSADORS.map(([n, g]) => `<li class="reveal"><span>${esc(n[0])}</span><b>${esc(n)}</b><small>Grade ${g}</small></li>`).join('')}</ul>
+    <p class="more-d">More of us, with photos, soon.</p>
   </section>`;
 }
-const ticket = (n) => `<a class="ticket ${String(S.grade) === n ? 'mine' : ''}" href="#/grade/${n}"><div class="tart">${GRADE_ART[n]}</div><div class="ttext"><span class="tn">Grade ${n}</span><b>${esc(GRADES[n].title)}</b></div></a>`;
-const idx = (h, icon, t, p) => `<a class="ix" href="${h}"><span class="ic">${icon}</span><span><b>${esc(t)}</b><small>${esc(p)}</small></span></a>`;
+function chapterCard(n) {
+  return `<a class="chap ${String(S.grade) === n ? 'mine' : ''}" href="#/grade/${n}" style="--g:${GRADE_GRAD[n]}">
+    <span class="chap-ico">${ICON[GRADE_ICON[n]]}</span>
+    <span class="chap-n">${n}</span>
+    <span class="chap-t"><small>Grade ${n}</small>${esc(GRADES[n].title)}</span></a>`;
+}
 
 function pageHead(title, sub, extra = '') { return `<header class="phead"><h1>${title}</h1>${sub ? `<p>${sub}</p>` : ''}${extra}</header>`; }
 
 function grades() {
-  visited(1);
-  return pageHead('Find your grade', 'Six chapters. Pick the grade you are joining.') + `<section class="band"><div class="tickets big">${Object.keys(GRADES).map((n) => ticket(n)).join('')}</div></section>`;
+  return pageHead('Find your grade.', 'Six chapters. Pick the grade you are joining.') + `<section class="band"><div class="rail grid">${Object.keys(GRADES).map((n) => chapterCard(n)).join('')}</div></section>`;
 }
 
 function grade(n) {
   const G = GRADES[n];
   if (!G) return grades();
-  S.grade = n; store.set('grade', n); visited(1);
+  S.grade = n; store.set('grade', n);
   const prog = +n <= 10 ? 'myp' : 'dp';
   return `
-  <header class="chapter">
-    <div class="cart">${GRADE_ART[n]}</div>
-    <div class="ctext"><p class="cnum">Chapter ${+n - 5} of 6</p><h1>Grade ${n}: ${esc(G.title)}</h1><p class="clead">${esc(G.lead)}</p></div>
-    <nav class="gswitch" aria-label="Other grades">${Object.keys(GRADES).map((k) => `<a href="#/grade/${k}" class="${k === String(n) ? 'on' : ''}">${k}</a>`).join('')}</nav>
+  <header class="chapter" style="--g:${GRADE_GRAD[n]}">
+    <div class="c-glow"></div>
+    <div class="c-in">
+      <span class="c-ico">${ICON[GRADE_ICON[n]]}</span>
+      <p class="cnum">Chapter ${+n - 5} of 6 · Grade ${n}</p>
+      <h1>${esc(G.title)}.</h1>
+      <p class="clead">${esc(G.lead)}</p>
+      <nav class="gswitch" aria-label="Other grades">${Object.keys(GRADES).map((k) => `<a href="#/grade/${k}" class="${k === String(n) ? 'on' : ''}">${k}</a>`).join('')}</nav>
+    </div>
   </header>
   <section class="band">
-    <h2>What matters this year</h2>
+    <h2>What matters this year.</h2>
     <div class="topics">${G.cards.map((c) => `<article class="topic ${c.todo ? 'is-todo' : ''}"><h3>${esc(c.h)}</h3><p>${esc(c.p)}</p>${c.todo ? todo : ''}</article>`).join('')}</div>
   </section>
-  <section class="band tint">
-    <h2>${prog === 'myp' ? 'Your programme: the MYP' : 'Your programme: the DP'}</h2>
+  <section class="band">
+    <h2>${prog === 'myp' ? 'Your programme: the MYP.' : 'Your programme: the DP.'}</h2>
     <div class="facts-list">${(prog === 'myp' ? MYP : DP).map((x) => `<div><b>${esc(x.h)}</b><p>${esc(x.p)}</p></div>`).join('')}</div>
-    <a class="link" href="#/ib">The IB, simply</a>
+    <a class="more-link" href="#/ib">The IB, simply</a>
   </section>
   <section class="band">
-    <div class="askbox"><div><h2>A question about Grade ${n}?</h2><p>An Ambassador from Grade ${n} will answer.</p></div><a class="btn" href="#/ask">Ask an Ambassador</a></div>
+    <div class="askbox"><div><h2>A question about Grade ${n}?</h2><p>An Ambassador from Grade ${n} will answer.</p></div><a class="pill" href="#/ask">Ask an Ambassador</a></div>
     <p class="credit">Grade ${n} chapter by ${esc(G.team)}.</p>
   </section>`;
 }
@@ -212,6 +241,7 @@ function me() {
 }
 
 // ---------- the guide (chat) ----------
+// ---------- the guide (chat) ----------
 const $chat = document.getElementById('chat');
 function chatHtml() {
   const msgs = S.chat.length ? S.chat : [{ me: false, t: 'Hi! I answer only from this guide, so I never make things up. If I do not know, I will send your question to an Ambassador.' }];
@@ -241,6 +271,7 @@ function route() {
   document.querySelectorAll('[data-t]').forEach((x) => x.classList.toggle('on', x.dataset.t === (a === 'grade' ? 'grades' : a || 'home')));
   openChat(false);
   window.scrollTo(0, 0);
+  initScenes();
 }
 window.addEventListener('hashchange', route);
 route();
@@ -287,3 +318,41 @@ document.addEventListener('submit', async (e) => {
     store.set('draft', ''); S.sent = body.grade; route();
   } catch { btn.disabled = false; document.getElementById('askErr').textContent = 'Your question was not sent. Check the internet and press Send question again.'; }
 });
+
+// ---------- scroll scenes ----------
+var io;
+function initScenes() {
+  io?.disconnect();
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const obs = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); } }), { threshold: 0.15 }); io = obs;
+  document.querySelectorAll('.reveal').forEach((el) => (reduce ? el.classList.add('in') : obs.observe(el)));
+  onScroll();
+}
+function clamp(v) { return Math.max(0, Math.min(1, v)); }
+function progress(el) { const r = el.getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - innerHeight)); }
+function onScroll() {
+  const hero = document.querySelector('[data-scene="hero"]');
+  if (hero) { const p = clamp(scrollY / innerHeight); hero.style.setProperty('--p', p); }
+  const swap = document.querySelector('[data-scene="swap"]');
+  if (swap) {
+    const lines = swap.querySelectorAll('.swap-lines span'); const p = progress(swap);
+    const idx = Math.min(lines.length - 1, Math.floor(p * lines.length * 0.999));
+    lines.forEach((l, i) => l.classList.toggle('on', i === idx));
+  }
+  const day = document.querySelector('[data-scene="day"]');
+  if (day) {
+    const p = progress(day); const mins = 8 * 60 + Math.round(p * (7 * 60 + 40));
+    document.getElementById('dayTime').textContent = `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
+    document.getElementById('dayFill').style.width = `${p * 100}%`;
+    const steps = day.querySelectorAll('.day-steps li'); const k = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+    steps.forEach((s, i) => { s.classList.toggle('on', i === k); s.classList.toggle('past', i < k); });
+  }
+}
+addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
+addEventListener('resize', onScroll);
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-scroll]'); if (!b) return;
+  const rail = document.getElementById('rail'); rail.scrollBy({ left: +b.dataset.scroll * rail.clientWidth * 0.8, behavior: 'smooth' });
+});
+// the top bar turns solid after the hero
+addEventListener('scroll', () => document.body.classList.toggle('scrolled', scrollY > 40), { passive: true });

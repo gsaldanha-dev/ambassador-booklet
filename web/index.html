@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#002A80">
+  <meta name="theme-color" content="#000000">
   <title>Start Here · St. Nicholas Secondary</title>
   <meta name="description" content="The welcome guide for new Secondary students at St. Nicholas School, written by the Ambassadors.">
   <link rel="icon" href="shield.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="config.js"></script>
 </head>
 <body>
   <header class="top">
-    <a class="lock" href="#/"><img src="shield.png" alt="St. Nicholas School"><i></i><span>Start Here<small>by the Secondary Ambassadors</small></span></a>
+    <a class="lock" href="#/"><img src="shield.png" alt="St. Nicholas School"><span>Start Here</span></a>
+    <nav class="toplinks" aria-label="Sections"><a href="#/grades">Grades</a><a href="#/ib">The IB</a><a href="#/glossary">Words</a><a href="#/help">Who to ask</a><a href="#/calendar">Dates</a><a href="#/ask">Ask us</a></nav>
     <button class="menu" id="menuBtn" aria-label="Menu">Menu</button>
   </header>
   <nav class="drawer" id="drawer" hidden aria-label="All pages">
@@ -24,7 +25,7 @@
   </nav>
   <main id="app"></main>
   <footer class="foot">
-    <p>Written by the Secondary Ambassadors, for new students.<br>St. Nicholas School · Pinheiros · 2026–27</p>
+    <p>Written by the Secondary Ambassadors, for new students.</p><p>St. Nicholas School, Pinheiros. 2026–27.</p>
   </footer>
   <button class="fab" data-act="chat" aria-label="Ask the guide">Ask the guide</button>
   <section class="chat" id="chat" hidden aria-label="Ask the guide"></section>
