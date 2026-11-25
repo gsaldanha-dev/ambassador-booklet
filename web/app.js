@@ -1,7 +1,7 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js';
-import { answer, SUGGESTIONS } from './guide.js';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js?v=1795625310';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795625310';
+import { answer, SUGGESTIONS } from './guide.js?v=1795625310';
 
 const $app = document.getElementById('app');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
