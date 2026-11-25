@@ -189,3 +189,32 @@ export const AMBASSADORS = [
   ['Gustavo', 8], ['Lucas F.', 8], ['Anuja', 8], ['Francisca', 9],
   ['Leopoldo', 11], ['Maya', 11], ['Oliver', 11], ['Elena', 11],
 ];
+
+// Places you will hear about in your first week (names as the school uses them).
+export const PLACES = [
+  { n: 'The Deck', p: 'An outdoor wooden deck under a big tree, with tables and benches. A favourite spot at break.', img: 'img/deck.webp' },
+  { n: 'The Green Area', p: 'Outdoor space for big activities. The whole of Grade 6 met here for the Spelling Bee.' },
+  { n: 'The Learning Hub', p: 'A large indoor space. When it rains, activities from the Deck move here.' },
+  { n: 'Humanities 2 and 3', p: 'Classrooms you will use a lot. The Ambassadors meet in Humanities 3 on Wednesdays at break.' },
+  { n: 'Flex Rooms 1 and 2', p: 'Used together when a whole grade needs to be in one place.' },
+  { n: 'Multipurpose 2', p: 'In the Primary building. Secondary uses it for some grade events.' },
+];
+
+// Photos from the Ambassadors' folder, captioned only with what you can see.
+export const PHOTOS = [
+  { src: 'img/campus-field.webp', c: 'The field, with the city all around it.' },
+  { src: 'img/classroom.webp', c: 'A Secondary classroom.' },
+  { src: 'img/together.webp', c: 'Students gathered in front of a presentation.' },
+  { src: 'img/lounge.webp', c: 'Group work does not always happen at a desk.' },
+  { src: 'img/ambassadors.webp', c: 'Ambassadors wear these vests at events. Look for them.' },
+  { src: 'img/study-hall.webp', c: 'A big room for study and meetings.' },
+  { src: 'img/outdoor-group.webp', c: 'Outside, between buildings.' },
+  { src: 'img/studio.webp', c: 'Rooms are made for working together.' },
+];
+
+// A real example of the year, with real numbers: the 2026 Spelling Bee.
+export const BEE = [
+  { n: '1', h: 'Round 1', p: 'Thursday 19 November, in every tutor group. 54 spellers went through.' },
+  { n: '2', h: 'Round 2', p: 'Wednesday 25 November, one room per grade, with the words on a TV. 21 finalists.' },
+  { n: '3', h: 'The Grand Final', p: 'Wednesday 2 December. Grade 6 against Grade 7, Grade 8 against Grade 9, and Grades 10, 11 and 12 together.' },
+];

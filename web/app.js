@@ -1,5 +1,5 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP } from './content.js';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js';
 import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js';
 import { answer, SUGGESTIONS } from './guide.js';
 
@@ -39,14 +39,34 @@ function home() {
     </div>
   </section>
 
+  <section class="zoom" data-scene="zoom">
+    <div class="zoom-stick">
+      <picture class="zoom-pic"><source media="(min-width: 760px)" srcset="img/outdoor-group.webp"><img src="img/campus-field.webp" alt="Students on the school field, with São Paulo's buildings around it"></picture>
+      <div class="zoom-txt"><h2>This is St. Nicholas.</h2><p>Pinheiros, São Paulo. Early Years to Grade 12 on one campus.</p></div>
+    </div>
+  </section>
+
   <section class="stats light">
     <h2 class="big">A small school with<br>a big world inside.</h2>
     <div class="stat-row">${FACTS.map((f) => `<div class="stat reveal"><b class="grad-txt">${esc(f.n)}</b><span>${esc(f.t)}</span></div>`).join('')}</div>
   </section>
 
+  <section class="life">
+    <div class="ch-head"><h2 class="big">Life here.<br><span class="dim">Real photos, taken by us.</span></h2><div class="ch-nav"><button data-scroll="-1" data-rail="photoRail" aria-label="Previous photos">‹</button><button data-scroll="1" data-rail="photoRail" aria-label="Next photos">›</button></div></div>
+    <div class="rail photos" id="photoRail">${PHOTOS.map((p) => `<figure class="ph"><img src="${p.src}" alt="${esc(p.c)}" loading="lazy"><figcaption>${esc(p.c)}</figcaption></figure>`).join('')}</div>
+  </section>
+
   <section class="chapters">
     <div class="ch-head"><h2 class="big">Six chapters.<br><span class="dim">One is yours.</span></h2><div class="ch-nav"><button data-scroll="-1" aria-label="Previous">‹</button><button data-scroll="1" aria-label="Next">›</button></div></div>
     <div class="rail" id="rail">${Object.keys(GRADES).map((n) => chapterCard(n)).join('')}</div>
+  </section>
+
+  <section class="places light">
+    <h2 class="big">Places you will hear<br>in your first week.</h2>
+    <div class="place-grid">
+      <figure class="place-hero reveal"><img src="img/deck.webp" alt="The Deck: a wooden deck under a big tree, with tables" loading="lazy"><figcaption><b>${esc(PLACES[0].n)}</b>${esc(PLACES[0].p)}</figcaption></figure>
+      <ul class="place-list">${PLACES.slice(1).map((p) => `<li class="reveal"><b>${esc(p.n)}</b><span>${esc(p.p)}</span></li>`).join('')}</ul>
+    </div>
   </section>
 
   <section class="day-scene" data-scene="day">
@@ -67,6 +87,15 @@ function home() {
       <a class="tile t-help reveal" href="#/help"><span class="ico">${ICON.person}</span><h3>Who to ask</h3><p>Start with your tutor. We are here too.</p></a>
       <a class="tile t-week reveal" href="#/checklist"><span class="ico">${ICON.check}</span><h3>Week one</h3><p>Eight small goals to tick off.</p></a>
       <a class="tile t-quiz reveal" href="#/quiz"><span class="ico">${ICON.spark}</span><h3>Which club is for you?</h3><p>Five questions.</p></a>
+    </div>
+  </section>
+
+  <section class="bee">
+    <div class="bee-in">
+      <h2 class="big">A year has moments<br><span class="grad-txt">you will remember.</span></h2>
+      <p class="bee-lead">Like the 2026 Spelling Bee, run by the Student Council for every grade.</p>
+      <ol class="bee-steps">${BEE.map((b) => `<li class="reveal"><span>${b.n}</span><b>${esc(b.h)}</b><p>${esc(b.p)}</p></li>`).join('')}</ol>
+      <a class="more-link light-link" href="#/events">All the big events</a>
     </div>
   </section>
 
@@ -333,6 +362,8 @@ function progress(el) { const r = el.getBoundingClientRect(); return clamp(-r.to
 function onScroll() {
   const hero = document.querySelector('[data-scene="hero"]');
   if (hero) { const p = clamp(scrollY / innerHeight); hero.style.setProperty('--p', p); }
+  const zoom = document.querySelector('[data-scene="zoom"]');
+  if (zoom) zoom.style.setProperty('--z', progress(zoom));
   const swap = document.querySelector('[data-scene="swap"]');
   if (swap) {
     const lines = swap.querySelectorAll('.swap-lines span'); const p = progress(swap);
@@ -352,7 +383,7 @@ addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: tru
 addEventListener('resize', onScroll);
 document.addEventListener('click', (e) => {
   const b = e.target.closest('[data-scroll]'); if (!b) return;
-  const rail = document.getElementById('rail'); rail.scrollBy({ left: +b.dataset.scroll * rail.clientWidth * 0.8, behavior: 'smooth' });
+  const rail = document.getElementById(b.dataset.rail || 'rail'); rail.scrollBy({ left: +b.dataset.scroll * rail.clientWidth * 0.8, behavior: 'smooth' });
 });
 // the top bar turns solid after the hero
 addEventListener('scroll', () => document.body.classList.toggle('scrolled', scrollY > 40), { passive: true });
