@@ -45,12 +45,18 @@ export const FACTS = [
   { n: '24+', t: 'years teaching the IB' },
 ];
 
+// The Secondary day (confirmed by the Ambassadors, 25/11). Seven 50-minute periods.
 export const DAY = [
-  { t: '08:00', h: 'School starts', p: 'Everyone in Secondary starts at the same time.' },
-  { t: 'Morning', h: 'Lessons', p: 'Your classes change by subject, so you move between rooms and meet different people.' },
-  { t: '10:00', h: 'Break', p: 'Time to breathe. Ambassadors meet on Wednesdays at break: come and say hi.' },
-  { t: 'During the week', h: 'Tutor time and PSHE', p: 'Your tutor group is your home base, and your tutor is the first person to ask.' },
-  { t: '15:40', h: 'Secondary finishes', p: 'Extra-curricular activities (ECAs) happen after school on some days.' },
+  { s: '08:00', e: '08:20', h: 'Tutor time', p: 'Start the day with your tutor group. Your tutor is the first person to ask about anything.' },
+  { s: '08:20', e: '09:10', h: 'Period 1', p: 'Lessons are 50 minutes. Classes change by subject, so you move rooms.' },
+  { s: '09:10', e: '10:00', h: 'Period 2', p: 'Check your timetable for the room before the bell.' },
+  { s: '10:00', e: '10:30', h: 'Break', p: 'Thirty minutes. Ambassadors meet on Wednesdays at break in Humanities 3: come and say hi.' },
+  { s: '10:30', e: '11:20', h: 'Period 3', p: 'Back to lessons.' },
+  { s: '11:20', e: '12:10', h: 'Period 4', p: 'Halfway through the day.' },
+  { s: '12:10', e: '13:00', h: 'Period 5', p: 'The last lesson before lunch.' },
+  { s: '13:00', e: '14:00', h: 'Lunch', p: 'A whole hour. Eat with someone new: it is on your week-one list.' },
+  { s: '14:00', e: '14:50', h: 'Period 6', p: 'Afternoon lessons.' },
+  { s: '14:50', e: '15:40', h: 'Period 7', p: 'The last lesson. Secondary finishes at 15:40.' },
 ];
 
 export const MYTHS = [

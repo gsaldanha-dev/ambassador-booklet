@@ -1,19 +1,19 @@
 // "Ask the guide": a chatbot that only answers from this site's own content.
 // No AI service: it matches the question against the answers below and the glossary,
 // so it can never invent a fact. When it is not sure, it sends the question to an Ambassador.
-import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795625424';
+import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795625668';
 
 const fold = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ');
 // Portuguese and informal words mapped to the words the answers use.
 const SYN = {
   horario: 'time', hora: 'time', horas: 'time', aula: 'school', aulas: 'school', comeca: 'start', começa: 'start', termina: 'end', acaba: 'end', sai: 'end', saida: 'end', entrada: 'start',
-  quando: 'when', primeiro: 'first', dia: 'day', ferias: 'holiday', feriado: 'holiday', recesso: 'holiday', break: 'holiday', vacation: 'holiday',
+  quando: 'when', primeiro: 'first', dia: 'day', ferias: 'holiday', feriado: 'holiday', recesso: 'holiday', vacation: 'holiday', intervalo: 'break', aulas_: 'periods', periodos: 'periods', periodo: 'periods', minutos: 'minutes',
   ajuda: 'help', triste: 'help', problema: 'help', worried: 'help', nervous: 'help', ansioso: 'help', bullying: 'help', quem: 'who',
   turma: 'class', sala: 'class', alunos: 'students', tamanho: 'size', big: 'size', many: 'size', quantos: 'size',
   nota: 'marks', notas: 'marks', mark: 'marks', marked: 'marks', grades: 'marks', avaliacao: 'marks', pontos: 'points', criterio: 'criteria', criterios: 'criteria',
   materias: 'subjects', materia: 'subjects', disciplinas: 'subjects', subject: 'subjects',
   clube: 'club', clubes: 'club', esporte: 'sport', esportes: 'sport', atividades: 'club', ecas: 'club', eca: 'club', activities: 'club',
-  lanche: 'snack', comida: 'snack', food: 'snack', lunch: 'snack', almoco: 'snack',
+  lanche: 'snack', comida: 'snack', food: 'snack',  almoco: 'lunch',
   embaixador: 'ambassador', embaixadores: 'ambassador', ambassadors: 'ambassador', tutora: 'tutor', tutores: 'tutor',
   projeto: 'project', pessoal: 'personal', orientacao: 'orientation', nacionalidades: 'nationalities', countries: 'nationalities', paises: 'nationalities',
   escola: 'school', fundada: 'founded', ano: 'year', calendario: 'calendar', dates: 'calendar', datas: 'calendar', fim: 'end', ultimo: 'last',
@@ -26,6 +26,10 @@ const T = (k, a, link, label) => ({ k: k.split(' '), a, link, label });
 const FAQ = [
   T('time start school day 8 morning', 'Secondary starts at 08:00 every day.', '#/day', 'A day here'),
   T('time end finish school day afternoon home', 'Secondary finishes at 15:40.', '#/day', 'A day here'),
+  T('lunch eat snack time when', 'Lunch is from 13:00 to 14:00, after Period 5.', '#/day', 'A day here'),
+  T('break interval recreio time when', 'Break is from 10:00 to 10:30, after Period 2.', '#/day', 'A day here'),
+  T('periods lessons how many long minutes timetable', 'There are seven periods of 50 minutes a day, plus tutor time from 08:00 to 08:20.', '#/day', 'A day here'),
+  T('tutor time morning', 'Tutor time is from 08:00 to 08:20, with your tutor group.', '#/day', 'A day here'),
   T('when first day start january back', 'The first day of lessons is Tuesday 26 January 2027. Before that, on Friday 22 January, there is the New Learners Orientation Morning.', '#/calendar', 'Key dates'),
   T('orientation morning new learners', 'The New Learners Orientation Morning is on Friday 22 January 2027, before your first day.', '#/calendar', 'Key dates'),
   T('holiday half term when calendar', 'The next half-term holiday is 22–26 March 2027.', '#/calendar', 'Key dates'),

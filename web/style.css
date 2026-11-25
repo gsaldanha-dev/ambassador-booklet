@@ -102,7 +102,7 @@ body:not([data-page="home"]) main { padding-top: 52px; }
 .chap.mine { box-shadow: 0 0 0 3px var(--off), 0 0 0 6px var(--yellow); }
 
 /* the day fills as you scroll */
-.day-scene { height: 360vh; background: var(--black); color: var(--white); }
+.day-scene { height: 560vh; background: var(--black); color: var(--white); }
 .day-stick { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 60px var(--pad) 40px; max-width: 1200px; margin: 0 auto; }
 .day-k { font: 600 17px var(--text); color: var(--grey2); }
 .day-clock b { font: 800 clamp(88px, 22vw, 240px)/.95 var(--disp); letter-spacing: -.06em; font-variant-numeric: tabular-nums; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -354,3 +354,6 @@ body[data-page="home"] .foot { margin-top: 0; }
 .marquee .ph { width: min(78vw, 480px); flex: none; }
 @keyframes drift { to { transform: translateX(calc(-50% - 10px)); } }
 @media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .marquee .track { animation: none; } }
+.tl time { display: flex; flex-direction: column; line-height: 1.1; }
+.tl time small { font: 500 14px var(--text); color: var(--grey2); letter-spacing: 0; margin-top: 4px; }
+.tl li.pause b { color: var(--blue); }

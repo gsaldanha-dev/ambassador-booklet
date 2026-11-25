@@ -1,7 +1,7 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js?v=1795625424';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795625424';
-import { answer, SUGGESTIONS } from './guide.js?v=1795625424';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js?v=1795625668';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795625668';
+import { answer, SUGGESTIONS } from './guide.js?v=1795625668';
 
 const $app = document.getElementById('app');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -74,7 +74,7 @@ function home() {
       <p class="day-k">A day in Secondary</p>
       <div class="day-clock"><b id="dayTime">08:00</b></div>
       <div class="day-bar"><i id="dayFill"></i></div>
-      <ol class="day-steps">${DAY.map((d, i) => `<li data-i="${i}"><b>${esc(d.h)}</b><span>${esc(d.p)}</span></li>`).join('')}</ol>
+      <ol class="day-steps">${DAY.map((d, i) => `<li data-i="${i}"><b>${esc(d.h)}</b><span>${esc(d.s)}–${esc(d.e)} · ${esc(d.p)}</span></li>`).join('')}</ol>
     </div>
   </section>
 
@@ -172,9 +172,9 @@ function grade(n) {
 }
 
 function day() {
-  return pageHead('A day here', 'The shape of a normal Secondary day.') + `
-  <section class="band"><ol class="tl">${DAY.map((d) => `<li><time>${esc(d.t)}</time><div><b>${esc(d.h)}</b><p>${esc(d.p)}</p></div></li>`).join('')}</ol>
-  <p class="todo-line">${todo}: a real Grade 6 day and a real Grade 11 day, hour by hour.</p></section>`;
+  return pageHead('A day here.', 'From 08:00 to 15:40. The same for every grade in Secondary.') + `
+  <section class="band"><ol class="tl">${DAY.map((d) => `<li class="${/Period/.test(d.h) ? '' : 'pause'}"><time>${esc(d.s)}<small>${esc(d.e)}</small></time><div><b>${esc(d.h)}</b><p>${esc(d.p)}</p></div></li>`).join('')}</ol>
+  <p class="todo-line">Seven periods of 50 minutes, a 30-minute break and an hour for lunch.</p></section>`;
 }
 
 function ib() {
@@ -375,7 +375,9 @@ function onScroll() {
     const p = progress(day); const mins = 8 * 60 + Math.round(p * (7 * 60 + 40));
     document.getElementById('dayTime').textContent = `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
     document.getElementById('dayFill').style.width = `${p * 100}%`;
-    const steps = day.querySelectorAll('.day-steps li'); const k = Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999));
+    const steps = day.querySelectorAll('.day-steps li');
+    const toMin = (t) => +t.slice(0, 2) * 60 + +t.slice(3);
+    let k = DAY.findIndex((d) => mins >= toMin(d.s) && mins < toMin(d.e)); if (k < 0) k = DAY.length - 1;
     steps.forEach((s, i) => { s.classList.toggle('on', i === k); s.classList.toggle('past', i < k); });
   }
 }
