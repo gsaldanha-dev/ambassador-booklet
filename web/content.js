@@ -67,21 +67,20 @@ export const MYTHS = [
 ];
 
 export const EVENTS = [
+  { k: 'Open Day', d: 'Families visit the school. The Ambassadors give the tours, so you may be one of the guides next time.', when: 'Twice a year' },
+  { k: 'Life Skills Trip', d: 'A trip for Grade 8. In 2026 it went to Ubatuba, on the coast of São Paulo.', when: 'Grade 8 · in October in 2026' },
   { k: 'Spelling Bee', d: 'Three rounds: tutor groups, then the whole grade, then the Grand Final. Run by the Student Council.', when: 'November – December' },
   { k: 'International Day', d: 'A day to celebrate the many nationalities in our community.', when: 'Date to be confirmed' },
-  { k: 'Made in Brazil', d: 'A celebration of Brazilian culture.', when: 'Date to be confirmed' },
+  { k: 'Made in Brazil', d: 'Student writing chosen for the Made in Brazil book, celebrated at a ceremony with an award for each year group. Winners only find out on the day.', when: 'Date to be confirmed' },
   { k: 'MUNicks', d: 'Our Model United Nations conference: debate, diplomacy and a lot of preparation.', when: 'Date to be confirmed' },
 ];
 
-// Grade pages. `todo: true` = the grade team is still writing it (shown with a soft tag on the site).
+// Grade pages. Only finished cards are listed; unfinished ones stay out until the grade team writes them.
 export const GRADES = {
   6: {
     title: 'From Primary to MYP',
     lead: 'Grade 6 is your first year of Secondary and of the MYP. More teachers, more rooms, more independence.',
     cards: [
-      { h: 'Primary vs Secondary', p: 'What changes, side by side: rooms, teachers, timetable, homework and lockers.', todo: true },
-      { h: 'Reading your timetable', p: 'A real timetable, explained step by step.', todo: true },
-      { h: 'Backpack and locker checklist', p: 'Made by Grade 7 students who were in your place last year.', todo: true },
     ],
     team: 'Anuja',
   },
@@ -89,20 +88,14 @@ export const GRADES = {
     title: 'Settling into the MYP',
     lead: 'If you join in Grade 7, your classmates already had a year of MYP. Here is how to catch up fast.',
     cards: [
-      { h: 'Joining in the middle of the MYP', p: 'What your classmates already know and how to catch up.', todo: true },
-      { h: 'MYP criteria, simply', p: 'In the MYP, each subject is marked against criteria (A, B, C, D), each out of 8. One marked task as an example is coming.', todo: false },
-      { h: 'Group projects', p: 'How to split the work fairly, and what to do when it is not fair.', todo: true },
+      { h: 'MYP criteria, simply', p: 'In the MYP, each subject is marked against criteria (A, B, C, D), each out of 8.', todo: false },
     ],
     team: 'Anuja',
   },
   8: {
     title: 'More independence',
-    lead: 'Grade 8 brings interdisciplinary units, the Life Skills Trip and more responsibility for your own work.',
+    lead: 'Grade 8 brings interdisciplinary units, the Life Skills Trip (Ubatuba, in 2026) and more responsibility for your own work.',
     cards: [
-      { h: 'Interdisciplinary units', p: 'Two subjects working on one unit, explained by a Grade 8 student with a real example.', todo: true },
-      { h: 'Design: idea to product', p: 'How a Design project goes from the first idea to the final product, with tips from the MiniDoc unit.', todo: true },
-      { h: 'The Life Skills Trip', p: 'What to pack and what it is really like.', todo: true },
-      { h: 'Your class representatives', p: 'Who they are and how to take an idea to them.', todo: true },
     ],
     team: 'Anuja',
   },
@@ -110,9 +103,7 @@ export const GRADES = {
     title: 'Getting ready for the Personal Project',
     lead: 'A heavier workload, and the year to start thinking about your Personal Project.',
     cards: [
-      { h: 'Personal Project preview', p: 'What Grade 10 students wish they had started thinking about in Grade 9.', todo: true },
-      { h: 'A week with many deadlines', p: 'A sample planner page, filled in by a real Grade 9 student.', todo: true },
-      { h: 'Competitions and roles', p: 'Spelling Bee, MUN, Student Council and more, and how to sign up.', todo: false },
+      { h: 'Competitions and roles', p: 'Spelling Bee, MUN, Student Council and more. Ask an Ambassador how to join each one.', todo: false },
     ],
     team: 'Francisca',
   },
@@ -120,9 +111,6 @@ export const GRADES = {
     title: 'The Personal Project and choosing the DP',
     lead: 'The last year of the MYP: the Personal Project, and choosing your DP subjects.',
     cards: [
-      { h: 'Personal Project timeline', p: 'From a student who finished it, with the mistakes to avoid.', todo: true },
-      { h: 'Choosing DP subjects', p: 'The questions to ask yourself and who to talk to before deciding.', todo: true },
-      { h: '“What I would tell myself in Grade 10”', p: 'An interview with a Grade 11 student.', todo: true },
     ],
     team: 'Ana L. and Sofia B.',
   },
@@ -131,8 +119,6 @@ export const GRADES = {
     lead: 'The IB Diploma Programme: six subjects, plus CAS, TOK and the Extended Essay.',
     cards: [
       { h: 'DP in one page', p: 'CAS: creativity, activity and service. TOK: Theory of Knowledge, how we know what we know. The Extended Essay: your own 4,000-word research paper.', todo: false },
-      { h: 'A week in the life of a DP student', p: 'Hour by hour.', todo: true },
-      { h: 'Using free periods well', p: 'Tips from Grade 12 students.', todo: true },
     ],
     team: 'Fernando, Oliver, Leopoldo, Elena, Emilly and Maya',
   },
@@ -160,6 +146,11 @@ export const GLOSSARY = [
   ['Orientation Morning', 'A morning for new learners before the first day.', 'Uma manhã para os alunos novos antes do primeiro dia.'],
   ['Timetable', 'Your weekly schedule of lessons and rooms.', 'Seu horário semanal de aulas e salas.'],
   ['Deadline', 'The date work must be handed in.', 'A data de entrega de um trabalho.'],
+  ['Bulletin', 'The school news your tutor reads in tutor time. The Year Group Information at the back is the part for your grade.', 'As notícias da escola que o tutor lê na tutor time. O Year Group Information, no fim, é a parte da sua série.'],
+  ['Tuck shop', 'The school snack shop, open at break and at lunch.', 'A lanchonete da escola, aberta no break e no almoço.'],
+  ['Class representative', 'A student elected to speak for your grade at the Student Council.', 'Aluno eleito para representar a sua série no Student Council.'],
+  ['Junior Ambassadors', 'Grade 6 students who help the Ambassadors welcome new students.', 'Alunos do Grade 6 que ajudam os Ambassadors a receber os alunos novos.'],
+  ['Alphaville', 'The other St. Nicholas campus. This guide is about the Pinheiros campus.', 'O outro campus da St. Nicholas. Este guia é sobre o campus de Pinheiros.'],
 ];
 
 export const CHECKLIST = [
@@ -192,7 +183,8 @@ export const QUIZ = {
 
 // Only Ambassadors whose grade we have confirmed. The Media team adds the rest, with photos.
 export const AMBASSADORS = [
-  ['Gustavo', 8], ['Lucas F.', 8], ['Anuja', 8], ['Francisca', 9],
+  ['Antônia', 6], ['Joana', 6], ['Olivia', 6], ['Maria Fernanda', 6], ['Nina', 6], ['Izabel', 6],
+  ['Gustavo', 8], ['João', 8], ['Lucas F.', 8], ['Anuja', 8], ['Francisca', 9],
   ['Leopoldo', 11], ['Maya', 11], ['Oliver', 11], ['Elena', 11],
 ];
 
@@ -203,6 +195,7 @@ export const PLACES = [
   { n: 'The Learning Hub', p: 'A large indoor space. When it rains, activities from the Deck move here.' },
   { n: 'Humanities 2 and 3', p: 'Classrooms you will use a lot. The Ambassadors meet in Humanities 3 on Wednesdays at break.' },
   { n: 'Flex Rooms 1 and 2', p: 'Used together when a whole grade needs to be in one place.' },
+  { n: 'The Library', p: 'For quiet study. At break there are card games too, an idea from the Student Council.' },
   { n: 'Multipurpose 2', p: 'In the Primary building. Secondary uses it for some grade events.' },
 ];
 
@@ -278,3 +271,15 @@ export const YEAR = {
   },
 };
 export const YEARGROUP = { size: '50 to 60 students in each year', classes: '10 to 15 in most classes, mixed by subject', day: '08:00 to 15:40, seven periods' };
+
+// MYP assessment criteria by subject group (the IB's own framework, the same in every IB school).
+export const CRITERIA = [
+  { g: 'Language and literature', c: ['Analysing', 'Organizing', 'Producing text', 'Using language'] },
+  { g: 'Language acquisition', c: ['Listening', 'Reading', 'Speaking', 'Writing'] },
+  { g: 'Individuals and societies', c: ['Knowing and understanding', 'Investigating', 'Communicating', 'Thinking critically'] },
+  { g: 'Sciences', c: ['Knowing and understanding', 'Inquiring and designing', 'Processing and evaluating', 'Reflecting on the impacts of science'] },
+  { g: 'Mathematics', c: ['Knowing and understanding', 'Investigating patterns', 'Communicating', 'Applying mathematics in real-life contexts'] },
+  { g: 'Arts', c: ['Investigating', 'Developing', 'Creating or performing', 'Evaluating'] },
+  { g: 'Physical and health education', c: ['Knowing and understanding', 'Planning for performance', 'Applying and performing', 'Reflecting and improving performance'] },
+  { g: 'Design', c: ['Inquiring and analysing', 'Developing ideas', 'Creating the solution', 'Evaluating'] },
+];

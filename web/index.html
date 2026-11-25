@@ -10,32 +10,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1795640488">
+  <link rel="stylesheet" href="style.css?v=1795641486">
   <script src="config.js"></script>
 </head>
 <body>
   <header class="top">
     <a class="lock" href="#/"><img src="shield.png" alt="St. Nicholas School"><span>Start Here</span></a>
-    <nav class="toplinks" aria-label="Sections"><a href="#/grades">Grades</a><a href="#/ib">The IB</a><a href="#/glossary">Words</a><a href="#/help">Who to ask</a><a href="#/calendar">Dates</a><a href="#/ask">Ask us</a></nav>
-    <button class="menu" id="menuBtn" aria-label="Menu">Menu</button>
+    <nav class="toplinks" aria-label="Sections"><a href="#/grades" data-i18n>Grades</a><a href="#/ib" data-i18n>The IB</a><a href="#/glossary" data-i18n>Words</a><a href="#/help" data-i18n>Who to ask</a><a href="#/calendar" data-i18n>Dates</a><a href="#/ask" data-i18n>Ask us</a></nav>
+    <div class="langs"><button class="lang-btn" id="langBtn" aria-haspopup="true" aria-label="Language">EN</button><div class="lang-menu" id="langMenu" hidden></div></div>
+    <button class="menu" id="menuBtn" aria-label="Menu" data-i18n>Menu</button>
   </header>
   <nav class="drawer" id="drawer" hidden aria-label="All pages">
-    <a href="#/">Home</a><a href="#/grades">Your grade</a><a href="#/day">A day here</a><a href="#/ib">The IB, simply</a><a href="#/glossary">Glossary</a>
-    <a href="#/help">Who to ask</a><a href="#/calendar">Key dates</a><a href="#/checklist">Week one</a><a href="#/quiz">Which club?</a><a href="#/events">The year</a><a href="#/ask">Ask an Ambassador</a><a href="#/me">My page</a>
+    <a href="#/" data-i18n>Home</a><a href="#/grades" data-i18n>Your grade</a><a href="#/day" data-i18n>A day here</a><a href="#/ib" data-i18n>The IB, simply</a><a href="#/glossary" data-i18n>Glossary</a>
+    <a href="#/help" data-i18n>Who to ask</a><a href="#/calendar" data-i18n>Key dates</a><a href="#/checklist" data-i18n>Week one</a><a href="#/quiz" data-i18n>Which club?</a><a href="#/events" data-i18n>The year</a><a href="#/ask" data-i18n>Ask an Ambassador</a><a href="#/me" data-i18n>My page</a>
   </nav>
   <main id="app"></main>
   <footer class="foot">
-    <p>Written by the Secondary Ambassadors, for new students.</p><p>St. Nicholas School, Pinheiros. 2026–27.</p>
+    <p data-i18n>Written by the Secondary Ambassadors, for new students.</p><p data-i18n>St. Nicholas School, Pinheiros. 2026–27.</p>
   </footer>
-  <button class="fab" data-act="chat" aria-label="Ask the guide">Ask the guide</button>
+  <button class="fab" data-act="chat" aria-label="Ask the guide" data-i18n>Ask the guide</button>
   <section class="chat" id="chat" hidden aria-label="Ask the guide"></section>
   <nav class="tabbar" id="tabbar" aria-label="Main">
-    <a href="#/" data-t="home">Home</a>
-    <a href="#/grades" data-t="grades">My grade</a>
-    <a href="#/glossary" data-t="glossary">Words</a>
-    <a href="#/checklist" data-t="checklist">Week one</a>
-    <a href="#/ask" data-t="ask">Ask us</a>
+    <a href="#/" data-t="home" data-i18n>Home</a>
+    <a href="#/grades" data-t="grades" data-i18n>My grade</a>
+    <a href="#/glossary" data-t="glossary" data-i18n>Words</a>
+    <a href="#/checklist" data-t="checklist" data-i18n>Week one</a>
+    <a href="#/ask" data-t="ask" data-i18n>Ask us</a>
   </nav>
-  <script type="module" src="app.js?v=1795640488"></script>
+  <script type="module" src="app.js?v=1795641486"></script>
 </body>
 </html>
