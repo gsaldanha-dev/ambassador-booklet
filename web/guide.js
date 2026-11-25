@@ -1,7 +1,7 @@
 // "Ask the guide": a chatbot that only answers from this site's own content.
 // No AI service: it matches the question against the answers below and the glossary,
 // so it can never invent a fact. When it is not sure, it sends the question to an Ambassador.
-import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795641486';
+import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795641834';
 
 const fold = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ');
 // Portuguese and informal words mapped to the words the answers use.
@@ -60,9 +60,9 @@ const FAQ = [
   T('snack food bring', 'From Grade 2 on, you can bring your own snack. For lunch, ask an Ambassador on your first day: we will show you how it works.', '#/ask', 'Ask an Ambassador'),
   T('nationalities international countries', 'Students and teachers at St. Nicholas come from 17 nationalities.', '#/', 'Home'),
   T('school founded old history ib', 'St. Nicholas was founded in 1980 and has taught the IB for more than 24 years, from Early Years to Grade 12.', '#/', 'Home'),
-  T('spelling bee', 'The Spelling Bee is run by the Student Council in three rounds: tutor groups, then the whole grade, then the Grand Final.', '#/events', 'The year'),
-  T('student council representatives idea', 'The Student Council represents students and runs events like the Spelling Bee. Your class representatives take your ideas to them.', '#/events', 'The year'),
-  T('mun munick debate', 'MUNicks is our Model United Nations conference: students debate as delegates of different countries.', '#/events', 'The year'),
+  T('life skills trip viagem', 'Every grade has its own Life Skills Trip during the year: learning together outside the school.', '#/events', 'The year'),
+  T('student council representatives idea', 'The Student Council represents students and organises events for them. Your class representatives take your ideas to them.', '#/events', 'The year'),
+  T('mun munick debate', 'Model United Nations runs throughout the year: students debate as delegates of different countries at conferences, including MUNicks, the one we host.', '#/events', 'The year'),
 ];
 for (const n of Object.keys(GRADES)) {
   const g = GRADES[n];

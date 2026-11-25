@@ -1,8 +1,8 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795641486';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795641486';
-import { answer, SUGGESTIONS } from './guide.js?v=1795641486';
-import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795641486';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795641834';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795641834';
+import { answer, SUGGESTIONS } from './guide.js?v=1795641834';
+import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795641834';
 
 const $app = document.getElementById('app');
 const raw = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -95,8 +95,8 @@ function home() {
   <section class="bee">
     <div class="bee-in">
       <h2 class="big">${T('A year has moments')}<br><span class="grad-txt">${T('you will remember.')}</span></h2>
-      <p class="bee-lead">${T('Like the 2026 Spelling Bee, run by the Student Council for every grade.')}</p>
-      <ol class="bee-steps">${BEE.map((b) => `<li class="reveal"><span>${b.n}</span><b>${esc(b.h)}</b><p>${esc(b.p)}</p></li>`).join('')}</ol>
+      <p class="bee-lead">${T('What is ahead in your year at St. Nicholas.')}</p>
+      <ol class="bee-steps">${EVENTS.map((b, i) => `<li class="reveal"><span>${i + 1}</span><b>${esc(b.k)}</b><p>${esc(b.d)}</p></li>`).join('')}</ol>
       <a class="more-link light-link" href="#/events">${T('All the big events')}</a>
     </div>
   </section>
@@ -338,14 +338,14 @@ function shell() {
   document.title = `${T('Start Here')} · St. Nicholas Secondary`;
 }
 window.addEventListener('hashchange', route);
-await loadLang(LANG, '1795641486');
+await loadLang(LANG, '1795641834');
 route();
 
 document.getElementById('menuBtn').onclick = () => { const d = document.getElementById('drawer'); d.hidden = !d.hidden; };
 document.addEventListener('click', (e) => {
   const flip = e.target.closest('[data-flip]'); if (flip) return flip.classList.toggle('open');
   if (e.target.closest('#langBtn')) { const m = document.getElementById('langMenu'); m.hidden = !m.hidden; return; }
-  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795641486').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
+  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795641834').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
   if (!e.target.closest('.langs')) { const m = document.getElementById('langMenu'); if (m) m.hidden = true; }
   const ans = e.target.closest('[data-ans]'); if (ans) { S.quiz.push(ans.dataset.ans); return route(); }
   const sg = e.target.closest('[data-sugg]'); if (sg) return reply(sg.dataset.sugg);

@@ -68,11 +68,10 @@ export const MYTHS = [
 
 export const EVENTS = [
   { k: 'Open Day', d: 'Families visit the school. The Ambassadors give the tours, so you may be one of the guides next time.', when: 'Twice a year' },
-  { k: 'Life Skills Trip', d: 'A trip for Grade 8. In 2026 it went to Ubatuba, on the coast of São Paulo.', when: 'Grade 8 · in October in 2026' },
-  { k: 'Spelling Bee', d: 'Three rounds: tutor groups, then the whole grade, then the Grand Final. Run by the Student Council.', when: 'November – December' },
+  { k: 'Life Skills Trip', d: 'Every grade has its own Life Skills Trip during the year: learning together outside the school.', when: 'Every grade' },
   { k: 'International Day', d: 'A day to celebrate the many nationalities in our community.', when: 'Date to be confirmed' },
-  { k: 'Made in Brazil', d: 'Student writing chosen for the Made in Brazil book, celebrated at a ceremony with an award for each year group. Winners only find out on the day.', when: 'Date to be confirmed' },
-  { k: 'MUNicks', d: 'Our Model United Nations conference: debate, diplomacy and a lot of preparation.', when: 'Date to be confirmed' },
+  { k: 'Made in Brazil', d: 'Student writing chosen for the Made in Brazil book, celebrated at a ceremony with an award for each year group. Winners only find out on the day.', when: 'Once a year' },
+  { k: 'MUN', d: 'Model United Nations runs throughout the year: you prepare, then debate as a delegate at conferences, including MUNicks, the conference we host.', when: 'Throughout the year' },
 ];
 
 // Grade pages. Only finished cards are listed; unfinished ones stay out until the grade team writes them.
@@ -94,7 +93,7 @@ export const GRADES = {
   },
   8: {
     title: 'More independence',
-    lead: 'Grade 8 brings interdisciplinary units, the Life Skills Trip (Ubatuba, in 2026) and more responsibility for your own work.',
+    lead: 'Grade 8 brings interdisciplinary units and more responsibility for your own work.',
     cards: [
     ],
     team: 'Anuja',
@@ -103,7 +102,7 @@ export const GRADES = {
     title: 'Getting ready for the Personal Project',
     lead: 'A heavier workload, and the year to start thinking about your Personal Project.',
     cards: [
-      { h: 'Competitions and roles', p: 'Spelling Bee, MUN, Student Council and more. Ask an Ambassador how to join each one.', todo: false },
+      { h: 'Competitions and roles', p: 'MUN, Student Council and more. Ask an Ambassador how to join each one.', todo: false },
     ],
     team: 'Francisca',
   },
@@ -140,7 +139,7 @@ export const GLOSSARY = [
   ['PSHE', 'Personal, Social and Health Education: a lesson about life, well-being and the school community.', 'Educação pessoal, social e de saúde: aula sobre vida, bem-estar e a comunidade da escola.'],
   ['ECA', 'Extra-curricular activity: clubs and sports after school.', 'Atividade extracurricular: clubes e esportes depois da aula.'],
   ['Half-term', 'A short holiday in the middle of a term.', 'Uma pausa curta no meio do semestre.'],
-  ['Student Council', 'Students elected to represent the school and run events like the Spelling Bee.', 'Alunos eleitos que representam a escola e organizam eventos como o Spelling Bee.'],
+  ['Student Council', 'Students elected to represent the school and organise events for students.', 'Alunos eleitos que representam a escola e organizam eventos para os alunos.'],
   ['Ambassadors', 'Students who welcome new families and new students. We wrote this site.', 'Alunos que recebem as famílias e os alunos novos. Fomos nós que fizemos este site.'],
   ['MUN', 'Model United Nations: students debate as delegates of different countries.', 'Simulação da ONU: alunos debatem como delegados de países.'],
   ['Orientation Morning', 'A morning for new learners before the first day.', 'Uma manhã para os alunos novos antes do primeiro dia.'],
@@ -175,8 +174,8 @@ export const QUIZ = {
   results: {
     sport: { h: 'Sports and ECAs', p: 'Try a sports ECA after school. Ask your tutor which ones run on which days.' },
     arts: { h: 'Arts and events', p: 'Look out for International Day and Made in Brazil: they always need creative people.' },
-    debate: { h: 'MUN and the Spelling Bee', p: 'MUNicks is our Model United Nations; the Spelling Bee is for word lovers.' },
-    lead: { h: 'Student Council', p: 'The Student Council runs events like the Spelling Bee. Talk to your class representatives.' },
+    debate: { h: 'MUN', p: 'Model United Nations runs throughout the year, with conferences like MUNicks, the one we host.' },
+    lead: { h: 'Student Council', p: 'The Student Council organises events for students. Talk to your class representatives.' },
     host: { h: 'Ambassadors', p: 'You would be a great Ambassador: we welcome new students and families. Ask us how to join.' },
   },
 };
@@ -191,7 +190,7 @@ export const AMBASSADORS = [
 // Places you will hear about in your first week (names as the school uses them).
 export const PLACES = [
   { n: 'The Deck', p: 'An outdoor wooden deck under a big tree, with tables and benches. A favourite spot at break.', img: 'img/deck.webp' },
-  { n: 'The Green Area', p: 'Outdoor space for big activities. The whole of Grade 6 met here for the Spelling Bee.' },
+  { n: 'The Green Area', p: 'Outdoor space for big activities, like events for a whole grade.' },
   { n: 'The Learning Hub', p: 'A large indoor space. When it rains, activities from the Deck move here.' },
   { n: 'Humanities 2 and 3', p: 'Classrooms you will use a lot. The Ambassadors meet in Humanities 3 on Wednesdays at break.' },
   { n: 'Flex Rooms 1 and 2', p: 'Used together when a whole grade needs to be in one place.' },
@@ -211,12 +210,6 @@ export const PHOTOS = [
   { src: 'img/studio.webp', c: 'Rooms are made for working together.' },
 ];
 
-// A real example of the year, with real numbers: the 2026 Spelling Bee.
-export const BEE = [
-  { n: '1', h: 'Round 1', p: 'Thursday 19 November, in every tutor group. 54 spellers went through.' },
-  { n: '2', h: 'Round 2', p: 'Wednesday 25 November, one room per grade, with the words on a TV. 21 finalists.' },
-  { n: '3', h: 'The Grand Final', p: 'Wednesday 2 December. Grade 6 against Grade 7, Grade 8 against Grade 9, and Grades 10, 11 and 12 together.' },
-];
 
 // Year by year (25/11). School facts come only from the school's "About the School" deck and the timetable Gustavo
 // confirmed. The IB parts are the IB's own framework (the same in every IB school); nothing here is invented about St. Nicholas.
