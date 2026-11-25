@@ -8,6 +8,36 @@ export const SITE = {
   firstDay: '2027-01-26T08:00:00-03:00', // back to school (Tuesday)
 };
 
+export const CALENDAR = [
+  ['Fri 22 Jan 2027', 'New Learners Orientation Morning'],
+  ['Tue 26 Jan 2027', 'Back to school: first day of lessons'],
+  ['22–26 Mar 2027', 'Half-term holiday'],
+  ['19 Jun 2027', 'Last day of the school year (to be confirmed)'],
+];
+
+// Who to go to. Roles only where we are sure of them.
+export const HELP = [
+  { who: 'Your tutor', when: 'First stop for anything: timetable, rooms, a problem with a class, how you feel.' },
+  { who: 'The Pastoral Coordinator', when: 'For well-being and bigger worries. In 2026–27 this is Ms. Luciana Brandespim.' },
+  { who: 'The Ambassadors', when: 'Students from your grade who were new once too. We meet on Wednesdays at break.' },
+  { who: 'Your class representatives', when: 'When you have an idea for your grade or the school.' },
+];
+
+// The IB programmes, explained simply (general IB rules, the same in every IB school).
+export const MYP_GROUPS = ['Language and literature', 'Language acquisition', 'Individuals and societies', 'Sciences', 'Mathematics', 'Arts', 'Physical and health education', 'Design'];
+export const MYP = [
+  { h: 'Eight subject groups', p: 'In the MYP you study eight subject groups every year, from Grade 6 to Grade 10.' },
+  { h: 'Marked against criteria', p: 'Each subject has four criteria, A to D. Each one is marked from 0 to 8, so you always know which skill a mark is about.' },
+  { h: 'A final grade from 1 to 7', p: 'At the end of the year the criteria add up to a final grade from 1 to 7 in each subject.' },
+  { h: 'Learning across subjects', p: 'Some units connect two subjects around one big question: these are interdisciplinary units.' },
+  { h: 'The Personal Project', p: 'In Grade 10 you choose something you care about and make it real, then reflect on how you did it.' },
+];
+export const DP = [
+  { h: 'Six subjects', p: 'One from each of six groups, usually three at Higher Level and three at Standard Level.' },
+  { h: 'Graded 1 to 7', p: 'Each subject is graded from 1 to 7, so 42 points come from your subjects.' },
+  { h: 'The core', p: 'Theory of Knowledge, the Extended Essay and CAS run alongside your subjects and can add up to 3 more points: 45 is the maximum.' },
+];
+
 export const FACTS = [
   { n: '1980', t: 'the year St. Nicholas was founded' },
   { n: '17', t: 'nationalities among students and teachers' },
@@ -24,6 +54,7 @@ export const DAY = [
 ];
 
 export const MYTHS = [
+  { q: '“In the MYP, a 6 means I did badly.”', a: 'Myth.', p: 'MYP criteria go from 0 to 8, so a 6 out of 8 is a strong mark. Ask your teacher what the next level needs.' },
   { q: '“My class will have 55 people.”', a: 'Myth.', p: 'Your year has 50–60 students, but classes are of 10 to 15 and change by subject.' },
   { q: '“Joining in January means I missed everything.”', a: 'Not quite.', p: 'There is a New Learners Orientation Morning on 22 January, and the Ambassadors will be there to welcome you.' },
   { q: '“I will have nobody to ask.”', a: 'Myth.', p: 'Your tutor is the first person to ask, and the Ambassadors from your grade are here to help. Use “Ask an Ambassador” on this site.' },
