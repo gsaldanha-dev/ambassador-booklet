@@ -1,7 +1,7 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js?v=1795625310';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795625310';
-import { answer, SUGGESTIONS } from './guide.js?v=1795625310';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, BEE } from './content.js?v=1795625424';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795625424';
+import { answer, SUGGESTIONS } from './guide.js?v=1795625424';
 
 const $app = document.getElementById('app');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -52,8 +52,8 @@ function home() {
   </section>
 
   <section class="life">
-    <div class="ch-head"><h2 class="big">Life here.<br><span class="dim">Real photos, taken by us.</span></h2><div class="ch-nav"><button data-scroll="-1" data-rail="photoRail" aria-label="Previous photos">‹</button><button data-scroll="1" data-rail="photoRail" aria-label="Next photos">›</button></div></div>
-    <div class="rail photos" id="photoRail">${PHOTOS.map((p) => `<figure class="ph"><img src="${p.src}" alt="${esc(p.c)}" loading="lazy"><figcaption>${esc(p.c)}</figcaption></figure>`).join('')}</div>
+    <div class="ch-head"><h2 class="big">Life here.<br><span class="dim">Real photos, taken by us.</span></h2></div>
+    <div class="marquee" aria-label="Photos of school life"><div class="track">${[...PHOTOS, ...PHOTOS].map((p, i) => `<figure class="ph"${i >= PHOTOS.length ? ' aria-hidden="true"' : ''}><img src="${p.src}" alt="${i >= PHOTOS.length ? '' : esc(p.c)}" loading="lazy"><figcaption>${esc(p.c)}</figcaption></figure>`).join('')}</div></div>
   </section>
 
   <section class="chapters">

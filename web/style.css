@@ -346,3 +346,11 @@ body[data-page="home"] .foot { margin-top: 0; }
 .bee-steps p { color: #A1A1A6; margin-top: 8px; }
 .light-link { color: var(--blue2); margin-top: 30px; }
 @media (min-width: 900px) { .bee-steps { grid-template-columns: repeat(3, 1fr); } }
+
+/* photos that move by themselves (pause when touched or hovered) */
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee .track { display: flex; gap: 20px; width: max-content; animation: drift 60s linear infinite; padding-left: 20px; }
+.marquee:hover .track, .marquee:active .track { animation-play-state: paused; }
+.marquee .ph { width: min(78vw, 480px); flex: none; }
+@keyframes drift { to { transform: translateX(calc(-50% - 10px)); } }
+@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .marquee .track { animation: none; } }
