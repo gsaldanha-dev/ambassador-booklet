@@ -1,8 +1,8 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795641834';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795641834';
-import { answer, SUGGESTIONS } from './guide.js?v=1795641834';
-import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795641834';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795725634';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795725634';
+import { answer, SUGGESTIONS } from './guide.js?v=1795725634';
+import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795725634';
 
 const $app = document.getElementById('app');
 const raw = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -125,14 +125,14 @@ function home() {
   <section class="people-scene light">
     <h2 class="big">${T('Written by us.')}</h2>
     <p class="lead-d">${T('Secondary Ambassadors. Find us at break on Wednesdays.')}</p>
-    <ul class="faces">${AMBASSADORS.map(([n, g]) => `<li class="reveal"><span>${raw(n[0])}</span><b>${raw(n)}</b><small>${T('Grade {n}', { n: g })}</small></li>`).join('')}</ul>
+    <div class="crew">${[...new Set(AMBASSADORS.map(([, g]) => g))].sort((x, y) => x - y).map((g) => `<div class="crew-row reveal"><span>${T('Grade {n}', { n: g })}${+g === 6 ? '<small>Junior Ambassadors</small>' : ''}</span><p>${AMBASSADORS.filter(([, x]) => x === g).map(([nm]) => `<b>${raw(nm)}</b>`).join('')}</p></div>`).join('')}</div>
   </section>`;
 }
 function chapterCard(n) {
   return `<a class="chap ${String(S.grade) === n ? 'mine' : ''}" href="#/grade/${n}" style="--g:${GRADE_GRAD[n]}">
     <span class="chap-ico">${ICON[GRADE_ICON[n]]}</span>
     <span class="chap-n">${n}</span>
-    <span class="chap-t"><small>${T('Grade {n}', { n })}</small>${esc(GRADES[n].title)}</span></a>`;
+    <span class="chap-t"><b>${T('Grade {n}', { n })}</b><small>${esc(GRADES[n].title)}</small></span></a>`;
 }
 
 function pageHead(title, sub, extra = '') { return `<header class="phead"><h1>${T(title)}</h1>${sub ? `<p>${T(sub)}</p>` : ''}${extra}</header>`; }
@@ -151,8 +151,8 @@ function grade(n) {
     <div class="c-glow"></div>
     <div class="c-in">
       <span class="c-ico">${ICON[GRADE_ICON[n]]}</span>
-      <p class="cnum">${T('Chapter {c} of 6 · Grade {n}', { c: +n - 5, n })}</p>
-      <h1>${esc(G.title)}${/[.。]$/.test(T(G.title)) ? '' : (LANG === 'ja' ? '。' : '.')}</h1>
+      <h1>${T('Grade {n}', { n })}</h1>
+      <p class="ctheme">${esc(G.title)}</p>
       <p class="clead">${esc(G.lead)}</p>
       <nav class="gswitch" aria-label="${esc('Other grades')}">${Object.keys(GRADES).map((k) => `<a href="#/grade/${k}" class="${k === String(n) ? 'on' : ''}">${k}</a>`).join('')}</nav>
     </div>
@@ -166,25 +166,16 @@ function grade(n) {
       <div><small>${T('Every day')}</small><b>${esc(YEARGROUP.day)}</b></div>
     </div>
   </section>` : ''}
-  ${G.cards.length ? `<section class="band">
+  <section class="band tint">
     <h2>${T('What matters this year.')}</h2>
-    <div class="topics">${G.cards.map((c) => `<article class="topic"><h3>${esc(c.h)}</h3><p>${esc(c.p)}</p></article>`).join('')}</div>
-  </section>` : ''}
-  ${YEAR[n] ? `<section class="band tint">
-    <h2>${T('What the IB asks of you in {p}.', { p: esc(YEAR[n].prog) })}</h2>
-    <div class="ibyear">${YEAR[n].ib.map((x, i) => `<article><span>${i + 1}</span><h3>${esc(x.h)}</h3><p>${esc(x.p)}</p></article>`).join('')}</div>
-    <p class="small">${T('This part is the IB’s own framework, the same in every IB school.')}</p>
-  </section>` : ''}
-  ${(() => { const here = AMBASSADORS.filter(([, g]) => String(g) === String(n)); return `<section class="band">
+    <div class="ibyear">${[...G.cards, ...(YEAR[n]?.ib || [])].map((x, i) => `<article><span>${i + 1}</span><h3>${esc(x.h)}</h3><p>${esc(x.p)}</p></article>`).join('')}</div>
+    <p class="small">${T('This part is the IB’s own framework, the same in every IB school.')} <a href="#/ib">${T('The IB, simply')} ›</a></p>
+  </section>
+  ${(() => { const here = AMBASSADORS.filter(([, g]) => String(g) === String(n)); const list = here.length ? here : AMBASSADORS.slice().sort((x, y) => Math.abs(x[1] - n) - Math.abs(y[1] - n)).slice(0, 3); return `<section class="band">
     <h2>${here.length ? T('Ambassadors in Grade {n}.', { n }) : T('Ambassadors near you.')}</h2>
     <p class="lead-s">${here.length ? T('They are in your year and remember being new.') : T('No Ambassador is in Grade {n} yet, so your questions go to the nearest grades.', { n })}</p>
-    <ul class="faces small">${(here.length ? here : AMBASSADORS.slice().sort((a, b) => Math.abs(a[1] - n) - Math.abs(b[1] - n)).slice(0, 3)).map(([nm, g]) => `<li><span>${raw(nm[0])}</span><b>${raw(nm)}</b><small>${T('Grade {n}', { n: g })}</small></li>`).join('')}</ul>
+    <ul class="people">${list.map(([nm, g]) => `<li><b>${raw(nm)}</b><small>${+g === 6 ? 'Junior Ambassador' : 'Ambassador'} · ${T('Grade {n}', { n: g })}</small></li>`).join('')}</ul>
   </section>`; })()}
-  <section class="band">
-    <h2>${T(prog === 'myp' ? 'Your programme: the MYP.' : 'Your programme: the DP.')}</h2>
-    <div class="facts-list">${(prog === 'myp' ? MYP : DP).map((x) => `<div><b>${esc(x.h)}</b><p>${esc(x.p)}</p></div>`).join('')}</div>
-    <a class="more-link" href="#/ib">${T('The IB, simply')}</a>
-  </section>
   <section class="band">
     <div class="askbox"><div><h2>${T('A question about Grade {n}?', { n })}</h2><p>${AMBASSADORS.some(([, g]) => String(g) === String(n)) ? T('An Ambassador from Grade {n} will answer.', { n }) : T('An Ambassador will answer.')}</p></div><a class="pill" href="#/ask">${T('Ask an Ambassador')}</a></div>
     <p class="credit">${T('Grade {n} chapter by {who}.', { n, who: raw(G.team) })}</p>
@@ -338,14 +329,14 @@ function shell() {
   document.title = `${T('Start Here')} · St. Nicholas Secondary`;
 }
 window.addEventListener('hashchange', route);
-await loadLang(LANG, '1795641834');
+await loadLang(LANG, '1795725634');
 route();
 
 document.getElementById('menuBtn').onclick = () => { const d = document.getElementById('drawer'); d.hidden = !d.hidden; };
 document.addEventListener('click', (e) => {
   const flip = e.target.closest('[data-flip]'); if (flip) return flip.classList.toggle('open');
   if (e.target.closest('#langBtn')) { const m = document.getElementById('langMenu'); m.hidden = !m.hidden; return; }
-  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795641834').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
+  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795725634').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
   if (!e.target.closest('.langs')) { const m = document.getElementById('langMenu'); if (m) m.hidden = true; }
   const ans = e.target.closest('[data-ans]'); if (ans) { S.quiz.push(ans.dataset.ans); return route(); }
   const sg = e.target.closest('[data-sugg]'); if (sg) return reply(sg.dataset.sugg);
