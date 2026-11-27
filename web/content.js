@@ -181,9 +181,12 @@ export const QUIZ = {
 
 // Only Ambassadors whose grade we have confirmed. The Media team adds the rest, with photos.
 export const AMBASSADORS = [
-  ['Antônia', 6], ['Joana', 6], ['Olivia', 6], ['Maria Fernanda', 6], ['Nina', 6], ['Izabel', 6],
-  ['Gustavo', 8], ['João', 8], ['Lucas F.', 8], ['Anuja', 8], ['Sofia W.', 9], ['Francisca', 9],
-  ['Alice', 11], ['Agata', 11], ['Emily', 11], ['Fernando', 11], ['Leopoldo', 11], ['Maya', 11], ['Oliver', 11], ['Elena', 11],
+  ['Antônia', 6], ['Izabel', 6], ['Joana', 6], ['Maria Fernanda', 6], ['Nina', 6], ['Olivia', 6],
+  ['Anuja', 8], ['Gustavo', 8], ['João', 8], ['Lucas', 8],
+  ['Agatha', 9], ['Alice', 9], ['Francisca', 9], ['Jordan', 9], ['Sofia W.', 9],
+  ['Ana Luiza', 10], ['Sofia B.', 10],
+  ['Elena', 11], ['Emilly', 11], ['Fernando', 11], ['Leopoldo', 11], ['Maya', 11], ['Oliver', 11],
+  ['Joaquim', 12], ['Nicholas', 12],
 ];
 
 // Places you will hear about in your first week (names as the school uses them).

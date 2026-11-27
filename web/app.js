@@ -1,8 +1,8 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795775088';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795775088';
-import { answer, SUGGESTIONS } from './guide.js?v=1795775088';
-import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795775088';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795775305';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795775305';
+import { answer, SUGGESTIONS } from './guide.js?v=1795775305';
+import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795775305';
 
 const $app = document.getElementById('app');
 const raw = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -329,14 +329,14 @@ function shell() {
   document.title = `${T('Start Here')} · St. Nicholas Secondary`;
 }
 window.addEventListener('hashchange', route);
-await loadLang(LANG, '1795775088');
+await loadLang(LANG, '1795775305');
 route();
 
 document.getElementById('menuBtn').onclick = () => { const d = document.getElementById('drawer'); d.hidden = !d.hidden; };
 document.addEventListener('click', (e) => {
   const flip = e.target.closest('[data-flip]'); if (flip) return flip.classList.toggle('open');
   if (e.target.closest('#langBtn')) { const m = document.getElementById('langMenu'); m.hidden = !m.hidden; return; }
-  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795775088').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
+  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795775305').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
   if (!e.target.closest('.langs')) { const m = document.getElementById('langMenu'); if (m) m.hidden = true; }
   const ans = e.target.closest('[data-ans]'); if (ans) { S.quiz.push(ans.dataset.ans); return route(); }
   const sg = e.target.closest('[data-sugg]'); if (sg) return reply(sg.dataset.sugg);

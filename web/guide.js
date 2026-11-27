@@ -1,7 +1,7 @@
 // "Ask the guide": a chatbot that only answers from this site's own content.
 // No AI service: it matches the question against the answers below and the glossary,
 // so it can never invent a fact. When it is not sure, it sends the question to an Ambassador.
-import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795775088';
+import { GLOSSARY, GRADES, CALENDAR, MYP_GROUPS } from './content.js?v=1795775305';
 
 const fold = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ');
 // Portuguese and informal words mapped to the words the answers use.
