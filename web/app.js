@@ -1,8 +1,8 @@
 // Start Here: the welcome guide for new Secondary students. Plain JS, hash routes, no build step.
-import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795725634';
-import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795725634';
-import { answer, SUGGESTIONS } from './guide.js?v=1795725634';
-import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795725634';
+import { SITE, FACTS, DAY, MYTHS, EVENTS, GRADES, GLOSSARY, CHECKLIST, QUIZ, AMBASSADORS, CALENDAR, HELP, MYP, MYP_GROUPS, DP, PLACES, PHOTOS, YEAR, YEARGROUP, CRITERIA } from './content.js?v=1795775088';
+import { ICON, GRADE_ICON, GRADE_GRAD } from './art.js?v=1795775088';
+import { answer, SUGGESTIONS } from './guide.js?v=1795775088';
+import { LANGS, LANG, loadLang, T } from './i18n.js?v=1795775088';
 
 const $app = document.getElementById('app');
 const raw = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -125,7 +125,7 @@ function home() {
   <section class="people-scene light">
     <h2 class="big">${T('Written by us.')}</h2>
     <p class="lead-d">${T('Secondary Ambassadors. Find us at break on Wednesdays.')}</p>
-    <div class="crew">${[...new Set(AMBASSADORS.map(([, g]) => g))].sort((x, y) => x - y).map((g) => `<div class="crew-row reveal"><span>${T('Grade {n}', { n: g })}${+g === 6 ? '<small>Junior Ambassadors</small>' : ''}</span><p>${AMBASSADORS.filter(([, x]) => x === g).map(([nm]) => `<b>${raw(nm)}</b>`).join('')}</p></div>`).join('')}</div>
+    <div class="crew">${[...new Set(AMBASSADORS.map(([, g]) => g))].sort((x, y) => x - y).map((g) => `<div class="crew-row reveal"><span>${T('Grade {n}', { n: g })}</span><p>${AMBASSADORS.filter(([, x]) => x === g).map(([nm]) => `<b>${raw(nm)}</b>`).join('')}</p></div>`).join('')}</div>
   </section>`;
 }
 function chapterCard(n) {
@@ -174,7 +174,7 @@ function grade(n) {
   ${(() => { const here = AMBASSADORS.filter(([, g]) => String(g) === String(n)); const list = here.length ? here : AMBASSADORS.slice().sort((x, y) => Math.abs(x[1] - n) - Math.abs(y[1] - n)).slice(0, 3); return `<section class="band">
     <h2>${here.length ? T('Ambassadors in Grade {n}.', { n }) : T('Ambassadors near you.')}</h2>
     <p class="lead-s">${here.length ? T('They are in your year and remember being new.') : T('No Ambassador is in Grade {n} yet, so your questions go to the nearest grades.', { n })}</p>
-    <ul class="people">${list.map(([nm, g]) => `<li><b>${raw(nm)}</b><small>${+g === 6 ? 'Junior Ambassador' : 'Ambassador'} · ${T('Grade {n}', { n: g })}</small></li>`).join('')}</ul>
+    <ul class="people">${list.map(([nm, g]) => `<li><b>${raw(nm)}</b><small>Ambassador · ${T('Grade {n}', { n: g })}</small></li>`).join('')}</ul>
   </section>`; })()}
   <section class="band">
     <div class="askbox"><div><h2>${T('A question about Grade {n}?', { n })}</h2><p>${AMBASSADORS.some(([, g]) => String(g) === String(n)) ? T('An Ambassador from Grade {n} will answer.', { n }) : T('An Ambassador will answer.')}</p></div><a class="pill" href="#/ask">${T('Ask an Ambassador')}</a></div>
@@ -329,14 +329,14 @@ function shell() {
   document.title = `${T('Start Here')} · St. Nicholas Secondary`;
 }
 window.addEventListener('hashchange', route);
-await loadLang(LANG, '1795725634');
+await loadLang(LANG, '1795775088');
 route();
 
 document.getElementById('menuBtn').onclick = () => { const d = document.getElementById('drawer'); d.hidden = !d.hidden; };
 document.addEventListener('click', (e) => {
   const flip = e.target.closest('[data-flip]'); if (flip) return flip.classList.toggle('open');
   if (e.target.closest('#langBtn')) { const m = document.getElementById('langMenu'); m.hidden = !m.hidden; return; }
-  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795725634').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
+  const sl = e.target.closest('[data-setlang]'); if (sl) { document.getElementById('langMenu').hidden = true; S.chat = []; store.set('chat', []); return loadLang(sl.dataset.setlang, '1795775088').then(() => { const y = scrollY; route(); scrollTo(0, y); }); }
   if (!e.target.closest('.langs')) { const m = document.getElementById('langMenu'); if (m) m.hidden = true; }
   const ans = e.target.closest('[data-ans]'); if (ans) { S.quiz.push(ans.dataset.ans); return route(); }
   const sg = e.target.closest('[data-sugg]'); if (sg) return reply(sg.dataset.sugg);

@@ -148,7 +148,6 @@ export const GLOSSARY = [
   ['Bulletin', 'The school news your tutor reads in tutor time. The Year Group Information at the back is the part for your grade.', 'As notícias da escola que o tutor lê na tutor time. O Year Group Information, no fim, é a parte da sua série.'],
   ['Tuck shop', 'The school snack shop, open at break and at lunch.', 'A lanchonete da escola, aberta no break e no almoço.'],
   ['Class representative', 'A student elected to speak for your grade at the Student Council.', 'Aluno eleito para representar a sua série no Student Council.'],
-  ['Junior Ambassadors', 'Grade 6 students who help the Ambassadors welcome new students.', 'Alunos do Grade 6 que ajudam os Ambassadors a receber os alunos novos.'],
   ['Alphaville', 'The other St. Nicholas campus. This guide is about the Pinheiros campus.', 'O outro campus da St. Nicholas. Este guia é sobre o campus de Pinheiros.'],
 ];
 
@@ -183,8 +182,8 @@ export const QUIZ = {
 // Only Ambassadors whose grade we have confirmed. The Media team adds the rest, with photos.
 export const AMBASSADORS = [
   ['Antônia', 6], ['Joana', 6], ['Olivia', 6], ['Maria Fernanda', 6], ['Nina', 6], ['Izabel', 6],
-  ['Gustavo', 8], ['João', 8], ['Lucas F.', 8], ['Anuja', 8], ['Francisca', 9],
-  ['Leopoldo', 11], ['Maya', 11], ['Oliver', 11], ['Elena', 11],
+  ['Gustavo', 8], ['João', 8], ['Lucas F.', 8], ['Anuja', 8], ['Sofia W.', 9], ['Francisca', 9],
+  ['Alice', 11], ['Agata', 11], ['Emily', 11], ['Fernando', 11], ['Leopoldo', 11], ['Maya', 11], ['Oliver', 11], ['Elena', 11],
 ];
 
 // Places you will hear about in your first week (names as the school uses them).
